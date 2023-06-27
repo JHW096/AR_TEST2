@@ -69,15 +69,42 @@ void AMyHead::PressLeftAction()
 		}
 	}
 
+	
+
+	//if (GetMyGameMode()->Snake.Num())
+
 
 	if (GetMyGameMode()->IsPart(GetActorLocation(), "Body"))
 	{
 		AActor* Body = GetMyGameMode()->GetPart(GetActorLocation(), "Body");
-		
+		UE_LOG(LogTemp, Log, TEXT("Snake Size : %d"), GetMyGameMode()->Snake.Num());
+		//비어있냐?
+
+		Cast<AMyPart>(Body)->Prev = Body->GetActorLocation();
+
 		Body->SetActorLocation(
-			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::RightVector * 100
+			Cast<AMyPart>(GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1])->Prev
 		);
 
+		/*if (RightEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() -1]->GetActorLocation() + FVector::RightVector * 100
+			);
+		}
+		else if (UpEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() -1]->GetActorLocation() + FVector::UpVector * 100
+			);
+		}
+		else if (DownEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100
+			);
+		}*/
+				
 		GetMyGameMode()->Snake.Add(Body);
 
 		if (GetMyGameMode()->Snake.Num() != 0)
@@ -137,12 +164,35 @@ void AMyHead::PressRightAction()
 	if (GetMyGameMode()->IsPart(GetActorLocation(), "Body"))
 	{
 		AActor* Body = GetMyGameMode()->GetPart(GetActorLocation(), "Body");
-		
+		UE_LOG(LogTemp, Log, TEXT("Snake Size : %d"), GetMyGameMode()->Snake.Num());
+
+		Cast<AMyPart>(Body)->Prev = Body->GetActorLocation();
+
 		Body->SetActorLocation(
-			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::LeftVector * 100
+			Cast<AMyPart>(GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1])->Prev
 		);
 
+		/*if (LeftEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::LeftVector * 100
+			);
+		}
+		else if (UpEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::UpVector * 100
+			);
+		}
+		else if (DownEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100
+			);
+		}*/
+
 		GetMyGameMode()->Snake.Add(Body);
+		
 
 		if (GetMyGameMode()->Snake.Num() != 0)
 		{
@@ -197,12 +247,36 @@ void AMyHead::PressUpAction()
 	if (GetMyGameMode()->IsPart(GetActorLocation(), "Body"))
 	{
 		AActor* Body = GetMyGameMode()->GetPart(GetActorLocation(), "Body");
-		
-		Body->SetActorLocation(
-			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100
-		);
+		UE_LOG(LogTemp, Log, TEXT("Snake Size : %d"), GetMyGameMode()->Snake.Num());
 
+		Cast<AMyPart>(Body)->Prev = Body->GetActorLocation();
+
+		Body->SetActorLocation(
+			Cast<AMyPart>(GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1])->Prev
+		);
+		
+		/*if (DownEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100
+			);
+		}
+		else if (LeftEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1 ]->GetActorLocation() + FVector::LeftVector * 100
+			);
+		}
+		else if (RightEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::RightVector * 100
+			);
+		}*/
+
+		
 		GetMyGameMode()->Snake.Add(Body);
+		
 
 		if (GetMyGameMode()->Snake.Num() != 0)
 		{
@@ -257,12 +331,39 @@ void AMyHead::PressDownAction()
 	if (GetMyGameMode()->IsPart(GetActorLocation(), "Body"))
 	{
 		AActor* Body = GetMyGameMode()->GetPart(GetActorLocation(), "Body");
-		
+		UE_LOG(LogTemp, Log, TEXT("Snake Size : %d"), GetMyGameMode()->Snake.Num());
+
+		Cast<AMyPart>(Body)->Prev = Body->GetActorLocation();
+
 		Body->SetActorLocation(
-			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::UpVector * 100
+			Cast<AMyPart>(GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1])->Prev
 		);
 
 		GetMyGameMode()->Snake.Add(Body);
+		/*if (UpEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1 ]->GetActorLocation() + FVector::UpVector * 100
+			);
+		}
+		else if (LeftEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::LeftVector * 100
+			);
+		}
+		else if (RightEmptyCheck())
+		{
+			Body->SetActorLocation(
+				GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::RightVector * 100
+			);
+		}*/
+
+		/*Body->SetActorLocation(
+			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::UpVector * 100
+		);*/
+
+		
 
 		if (GetMyGameMode()->Snake.Num() != 0)
 		{
@@ -272,4 +373,58 @@ void AMyHead::PressDownAction()
 		GetMyGameMode()->CurBodyReset();
 	}
 }
+
+bool AMyHead::LeftEmptyCheck()
+{
+	if (GetMyGameMode()->IsPart(
+		GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::LeftVector * 100, "Wall") == true ||
+		GetMyGameMode()->IsPart(
+			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::LeftVector * 100, "Body") == true
+		)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool AMyHead::RightEmptyCheck()
+{
+	if (GetMyGameMode()->IsPart(
+		GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::RightVector * 100, "Wall") == true ||
+		GetMyGameMode()->IsPart(
+		GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::RightVector * 100, "Body") == true
+		)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool AMyHead::UpEmptyCheck()
+{
+	if (GetMyGameMode()->IsPart(
+		GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::UpVector * 100, "Wall") == true ||
+		GetMyGameMode()->IsPart(
+			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::UpVector * 100, "Body") == true
+		)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool AMyHead::DownEmptyCheck()
+{
+	if (GetMyGameMode()->IsPart(
+		GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100, "Wall") == true ||
+		GetMyGameMode()->IsPart(
+			GetMyGameMode()->Snake[GetMyGameMode()->Snake.Num() - 1]->GetActorLocation() + FVector::DownVector * 100, "Body") == true
+		)
+	{
+		return false;
+	}
+	return true;
+}
+
+
 

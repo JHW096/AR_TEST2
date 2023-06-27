@@ -38,5 +38,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void PressDownAction();
 
-
+	bool LeftEmptyCheck();
+	bool RightEmptyCheck();
+	bool UpEmptyCheck();
+	bool DownEmptyCheck();
 };
